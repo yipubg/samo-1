@@ -1,42 +1,43 @@
 # SAMO
 
-This repo provides codes for our ICASSP 2023 paper ["SAMO: Speaker Attractor Multi-Center One-Class Learning for Voice Anti-Spoofing"](https://arxiv.org/abs/2211.02718).
+本仓库提供 ICASSP 2023 论文 ["SAMO: Speaker Attractor Multi-Center One-Class Learning for Voice Anti-Spoofing"](https://arxiv.org/abs/2211.02718) 的代码实现。
 
-## Preparation
-- Installing dependencies
+## 环境准备
+- 安装依赖
 ```
 pip install -r requirements.txt
 ```
-- Running environment
-  - 1 GPU: GeForce GTX 1080 Ti
-  - ~11GB required for a batch size of 23 
-- Dataset for train/val/eval:
-  - Download ASVspoof 2019 logical access dataset [here](https://datashare.ed.ac.uk/handle/10283/3336)
-  - Specify path to the 'LA' folder in argument `--path_to_database`
+- 运行环境
+  - 1 块 GPU: GeForce GTX 1080 Ti
+  - 批量大小 23 时约需 11GB 显存
+- 训练/验证/评估数据集:
+  - 从[此处](https://datashare.ed.ac.uk/handle/10283/3336)下载 ASVspoof 2019 logical access 数据集
+  - 将 'LA' 文件夹路径指定给参数 `--path_to_database`
 
-## Training
-The `main.py` file contains train/val/eval steps for Softmax/OC-Softmax/SAMO.
+## 训练
+`main.py` 文件包含了 Softmax/OC-Softmax/SAMO 的训练、验证和评估步骤。
 
-For example, to train SAMO:
+例如，训练 SAMO:
 ```angular2html
 python3 samo/main.py -o 'path_to_output_folder' -d 'path_to_database' -p 'path_to_protocol' --overwrite
 ```
 
-Please check argument setups in `main.py` to specify settings such as batch size and margins.
+请查看 `main.py` 中的参数设置来指定批量大小和边际值等设置。
 
-## Evaluation
-To evaluate pretrained SAMO:
+## 评估
+评估预训练的 SAMO 模型:
 ```angular2html
 python3 samo/main.py --test_only --test_model "./models/samo.pt" --scoring 'samo' --save_score "samo_score"
 ```
-And the output will show `Test EER: 0.008751418248624953`
-## Acknowledgement
-This is built upon open-source repos:
+输出结果将显示 `Test EER: 0.008751418248624953`
+
+## 致谢
+本项目基于以下开源仓库:
 - [OC-Softmax](https://github.com/yzyouzhang/AIR-ASVspoof)
 - [AASIST](https://github.com/clovaai/aasist)
 
 
-## Citation
+## 引用
 ```bibtex
 @inproceedings{ding2023samo,
   title={SAMO: Speaker Attractor Multi-Center One-Class Learning for Voice Anti-Spoofing},
@@ -47,7 +48,7 @@ This is built upon open-source repos:
 ```
 
 
-## References
+## 参考文献
 
 ```bibtex
 @article{wang2020asvspoof,
